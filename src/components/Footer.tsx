@@ -4,51 +4,74 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 const Footer: React.FC = () => {
   const sections = [
     {
-      title: "Shop and Learn",
+      title: "Veeville",
       links: [
-        "Store",
-        "Mac",
-        "iPad",
-        "iPhone",
-        "Watch",
-        "Vision",
-        "AirPods",
-        "TV & Home",
-        "AirTag",
-        "Accessories",
-        "Gift Cards",
+        "Veeville Communications",
+        "Veeville Films",
+        "Veeville Experience",
+        "Veeville Technologies",
+        "Testimonials",
+        "Pricing",
+        "FAQs",
+        "Contact Us",
+        "Careers",
       ],
     },
     {
-      title: "Apple Wallet",
-      links: ["Apple Pay", "Apple Card", "Apple Cash"],
-    },
-    {
-      title: "Account",
-      links: ["Manage Your Apple Account", "Apple Store Account", "iCloud.com"],
-    },
-    {
-      title: "Entertainment",
-      links: ["Apple One", "Apple TV+", "Apple Music", "Apple Arcade"],
-    },
-    {
-      title: "Apple Store",
+      title: "Nusense",
       links: [
-        "Find a Store",
-        "Genius Bar",
-        "Today at Apple",
-        "Apple Camp",
-        "Apple Store App",
-        "Certified Refurbished",
-        "Apple Trade In",
-        "Financing",
-        "Order Status",
-        "Shopping Help",
+        "About Us",
+        "What We Do",
+        "Our Work",
+        "Insights",
+        "Testimonials",
+        "Pricing",
+        "FAQs",
+        "Contact Us",
+        "Careers",
       ],
     },
     {
-      title: "For Business",
-      links: ["Apple and Business", "Shop for Business"],
+      title: "Lying Racoon",
+      links: [
+        "About Us",
+        "What We Do",
+        "Our Work",
+        "Insights",
+        "Testimonials",
+        "Pricing",
+        "FAQs",
+        "Contact Us",
+        "Careers",
+      ],
+    },
+    {
+      title: "Pinyata Foods",
+      links: [
+        "About Us",
+        "What We Do",
+        "Our Work",
+        "Insights",
+        "Testimonials",
+        "Pricing",
+        "FAQs",
+        "Contact Us",
+        "Careers",
+      ],
+    },
+    {
+      title: "Dhool",
+      links: [
+        "About Us",
+        "What We Do",
+        "Our Work",
+        "Insights",
+        "Testimonials",
+        "Pricing",
+        "FAQs",
+        "Contact Us",
+        "Careers",
+      ],
     },
   ];
 
@@ -60,7 +83,7 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-gray-400 py-8 text-center lg:text-left mx-auto">
       <div className="container mx-auto px-4">
         {/* Collapsible Sections */}
-        <div className="lg:grid lg:grid-cols-6 lg:gap-6">
+        <div className="lg:grid lg:grid-cols-5 lg:gap-6 lg:mx-auto lg:w-fit">
           {sections.map(({ title, links }) => (
             <div
               key={title}
@@ -84,7 +107,7 @@ const Footer: React.FC = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="hover:text-white transition-colors block lg:inline"
+                      className="text-left hover:text-white transition-colors block lg:inline"
                     >
                       {link}
                     </a>
@@ -98,33 +121,21 @@ const Footer: React.FC = () => {
         {/* Footer Bottom Links */}
         <div className="text-center border-t border-gray-700 pt-4 text-xs max-w-3xl mx-auto mt-6">
           <p className="mb-4">
-            More ways to shop:{" "}
-            <a href="#" className="text-blue-400 hover:underline">
-              Find an Apple Store
-            </a>{" "}
-            or{" "}
-            <a href="#" className="text-blue-400 hover:underline">
-              other retailer
-            </a>{" "}
-            near you. Or call 1-800-MY-APPLE.
+            * IF THOU HAST NO HORSE * THOU MUST WORK THY ASS OFF *
           </p>
           <p className="text-gray-500">
-            &copy; 2024 Apple Inc. All rights reserved.{" "}
-            {[
-              "Privacy Policy",
-              "Terms of Use",
-              "Sales and Refunds",
-              "Legal",
-              "Site Map",
-            ].map((text) => (
-              <React.Fragment key={text}>
-                <a href="#" className="text-blue-400 hover:underline mx-1">
-                  {text}
-                </a>
-                {text !== "Site Map" && " | "}
-              </React.Fragment>
-            ))}{" "}
-            United States
+            &copy; 2024 Veeville. All rights reserved.{" "}
+            {["Privacy Policy", "Terms of Use", "Legal", "Site Map"].map(
+              (text) => (
+                <React.Fragment key={text}>
+                  <a href="#" className="text-blue-400 hover:underline mx-1">
+                    {text}
+                  </a>
+                  {text !== "Site Map" && " | "}
+                </React.Fragment>
+              )
+            )}{" "}
+            India
           </p>
         </div>
       </div>

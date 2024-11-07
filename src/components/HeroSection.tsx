@@ -23,7 +23,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
 }) => {
   console.log({ bgImage });
   return (
-    <div className="relative w-full h-[450px] overflow-hidden mb-3">
+    <div className="relative w-full h-[500px] overflow-hidden mb-3">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -33,18 +33,21 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
         />
       </div>
 
+      {/* Overlay for text visibility */}
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+
       {/* Content container */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center">
         <div className="w-full max-w-4xl mx-auto px-6">
           {/* Main content */}
-          <div className="space-y-8">
-            {/* Title */}
-            <h1 className="text-5xl md:text-6xl font-serif text-white text-center tracking-wide font-bold">
+          <div className="space-y-8 text-white">
+            {/* Title with glowing effect */}
+            <h1 className="text-4xl md:text-6xl font-serif text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide drop-shadow-[0_0_10px_rgba(255,100,200,0.8)]">
               {title}
             </h1>
 
-            {/* Release info */}
-            <p className="text-lg md:text-xl text-white text-center">
+            {/* Description */}
+            <p className="text-lg md:text-xl text-center italic max-w-2xl mx-auto leading-relaxed drop-shadow-md">
               {description}
             </p>
 
@@ -58,16 +61,13 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
               >
                 <button
                   type="button"
-                  className="group bg-white text-black px-8 py-3 rounded-full 
-                           hover:bg-gray-100 active:bg-gray-200 
-                           transition duration-200
-                           text-base font-medium
-                           flex items-center space-x-2
-                           shadow-md"
+                  className="group bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-3 rounded-full 
+                             hover:scale-105 active:scale-95 transition-transform duration-200 
+                             text-base font-medium shadow-lg flex items-center space-x-2"
                 >
                   <span>{buttonText}</span>
                   <svg
-                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

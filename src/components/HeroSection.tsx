@@ -7,6 +7,7 @@ interface BgImageProps {
 }
 
 interface StreamingPromoProps {
+  family: string;
   title: string;
   description: string;
   buttonText: string;
@@ -20,6 +21,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
   buttonText,
   bgImage,
   link,
+  family,
 }) => {
   console.log({ bgImage });
   return (
@@ -42,10 +44,14 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
           {/* Main content */}
           <div className="space-y-8 text-white">
             {/* Title without glow effect */}
-            <h1 className="text-4xl md:text-6xl font-serif text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
-              {title}
-            </h1>
-
+            <div className="flex mx-auto w-fit">
+              <h1 className="text-4xl md:text-6xl text-center georgia-text text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
+                {family}
+              </h1>
+              <h1 className="text-4xl md:text-6xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
+                {title}
+              </h1>
+            </div>
             {/* Description */}
             <p className="text-lg md:text-xl text-center italic max-w-2xl mx-auto leading-relaxed drop-shadow-md">
               {description}

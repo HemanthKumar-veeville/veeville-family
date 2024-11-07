@@ -17,3 +17,9 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.georgia-text {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+  }
+  

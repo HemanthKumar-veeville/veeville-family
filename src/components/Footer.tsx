@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   const sections = [
@@ -71,7 +72,7 @@ const Footer: React.FC = () => {
               >
                 {title}
                 <span className="lg:hidden">
-                  {openSection === title ? "-" : "+"}
+                  {openSection === title ? <FaChevronUp /> : <FaChevronDown />}
                 </span>
               </button>
               <ul

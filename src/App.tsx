@@ -15,6 +15,7 @@ const App: React.FC = () => {
           description={card?.description}
           buttonText={card?.button_text}
           bgImage={card?.bg_image}
+          link={card?.link}
         />
       ))}
       <Footer />

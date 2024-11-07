@@ -11,6 +11,7 @@ interface StreamingPromoProps {
   description: string;
   buttonText: string;
   bgImage: BgImageProps;
+  link: string;
 }
 
 const StreamingPromo: React.FC<StreamingPromoProps> = ({
@@ -18,6 +19,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
   description,
   buttonText,
   bgImage,
+  link,
 }) => {
   console.log({ bgImage });
   return (
@@ -48,32 +50,38 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
 
             {/* CTA Button */}
             <div className="flex justify-center">
-              <button
-                type="button"
-                className="group bg-white text-black px-8 py-3 rounded-full 
-                         hover:bg-gray-100 active:bg-gray-200 
-                         transition duration-200
-                         text-base font-medium
-                         flex items-center space-x-2
-                         shadow-md"
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={buttonText}
               >
-                <span>{buttonText}</span>
-                <svg
-                  className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+                <button
+                  type="button"
+                  className="group bg-white text-black px-8 py-3 rounded-full 
+                           hover:bg-gray-100 active:bg-gray-200 
+                           transition duration-200
+                           text-base font-medium
+                           flex items-center space-x-2
+                           shadow-md"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                  <span>{buttonText}</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </a>
             </div>
           </div>
         </div>

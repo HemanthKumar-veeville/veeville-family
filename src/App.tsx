@@ -7,7 +7,7 @@ import cardData from "./assets/data";
 const App: React.FC = () => {
   console.log({ cardData });
   return (
-    <div>
+    <div className="montserrat-font">
       <Navbar />
       {cardData?.map((card) => (
         <StreamingPromo

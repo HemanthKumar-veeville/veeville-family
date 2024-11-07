@@ -41,8 +41,8 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
         <div className="w-full max-w-4xl mx-auto px-6">
           {/* Main content */}
           <div className="space-y-8 text-white">
-            {/* Title with glowing effect */}
-            <h1 className="text-4xl md:text-6xl font-serif text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide drop-shadow-[0_0_10px_rgba(255,100,200,0.8)]">
+            {/* Title without glow effect */}
+            <h1 className="text-4xl md:text-6xl font-serif text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
               {title}
             </h1>
 

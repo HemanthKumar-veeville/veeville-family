@@ -44,11 +44,11 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
           {/* Main content */}
           <div className="space-y-8 text-white">
             {/* Title without glow effect */}
-            <div className="flex mx-auto w-fit">
+            <div className="flex mx-auto w-fit items-baseline">
               <h1 className="text-4xl md:text-6xl text-center georgia-text text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
                 {family}
               </h1>
-              <h1 className="text-4xl md:text-6xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
+              <h1 className="text-4xl md:text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
                 {title}
               </h1>
             </div>

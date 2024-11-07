@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { VeevilleLogo } from "../assets";
 
 interface NavLink {
   name: string;
@@ -35,7 +36,7 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
             {/* Logo or Brand Name */}
-            <div className="text-xl font-semibold">Veeville</div>
+            <img className="text-xl font-semibold" src={VeevilleLogo}></img>
 
             {/* Desktop Links */}
             <ul className="hidden md:flex space-x-8">

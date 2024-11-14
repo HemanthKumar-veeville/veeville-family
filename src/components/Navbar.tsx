@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { VeevilleLogo } from "../assets";
+import Menu from "./Menu";
 
 interface NavLink {
   name: string;
@@ -18,7 +19,9 @@ const Navbar: React.FC = () => {
     { name: "Contact us", href: "#contact" },
   ];
 
+  const [isHeightIncreased, setIsHeightIncreased] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = (): void => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -29,17 +32,39 @@ const Navbar: React.FC = () => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleMouseEnter = () => setIsHeightIncreased(true);
+  const handleMouseLeave = () => setIsHeightIncreased(false);
+
+  useEffect(() => {
+    if (navRef.current) {
+      navRef.current.style.height = isHeightIncreased
+        ? `${navRef.current.scrollHeight}px`
+        : "80px";
+    }
+  }, [isHeightIncreased]);
+
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-[#121212] text-gray-300 z-50 border-b border-gray-800 shadow-lg">
+      <nav
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 bg-[#121212] text-gray-300 z-50 border-b border-gray-800 shadow-lg overflow-hidden transition-all duration-500 ease-in-out"
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-baseline px-4 sm:px-6 lg:px-8 py-4">
             {/* Logo or Brand Name */}
-            <img className="text-xl font-semibold" src={VeevilleLogo}></img>
+            <img
+              className="text-xl font-semibold"
+              src={VeevilleLogo}
+              alt="Veeville Logo"
+            />
 
             {/* Desktop Links */}
-            <ul className="hidden md:flex space-x-8">
+            <ul
+              className="hidden md:flex space-x-8 transition-all duration-300"
+              onMouseEnter={handleMouseEnter}
+            >
               {navLinks.map((link, index) => (
                 <li
                   key={index}
@@ -66,6 +91,13 @@ const Navbar: React.FC = () => {
               )}
             </button>
           </div>
+
+          {/* Conditionally render the Menu component */}
+          {isHeightIncreased && (
+            <div className="mt-4">
+              <Menu />
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu */}

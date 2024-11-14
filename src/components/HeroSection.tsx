@@ -58,7 +58,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
           src={bgVideo}
           loop
           muted
-          className="w-full h-full object-fill"
+          className="w-full h-full object-cover md:object-fill"
         />
       </div>
 

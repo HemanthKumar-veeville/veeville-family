@@ -1,17 +1,11 @@
-import React from "react";
-
-interface BgImageProps {
-  bg1?: string;
-  bg2?: string;
-  bg3?: string;
-}
+import React, { useRef, useEffect, useState } from "react";
 
 interface StreamingPromoProps {
   family: string;
   title: string;
   description: string;
   buttonText: string;
-  bgImage: BgImageProps;
+  bgVideo: string; // Single video URL
   link: string;
 }
 
@@ -19,19 +13,52 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
   title,
   description,
   buttonText,
-  bgImage,
+  bgVideo,
   link,
   family,
 }) => {
-  console.log({ bgImage });
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.intersectionRatio === 1) {
+          // 100% visibility
+          videoRef.current?.play();
+          setIsPlaying(true);
+        } else {
+          videoRef.current?.pause();
+          setIsPlaying(false);
+        }
+      },
+      {
+        root: null,
+        threshold: 1.0, // Trigger when the video is 100% visible
+      }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="relative w-full h-[500px] overflow-hidden mb-3">
-      {/* Background image */}
+      {/* Background video */}
       <div className="absolute inset-0">
-        <img
-          src={bgImage.bg1 || bgImage.bg2 || bgImage.bg3}
-          alt="Promotional background"
-          className="h-[600px] w-full object-cover"
+        <video
+          ref={videoRef}
+          src={bgVideo}
+          loop
+          muted
+          className="w-full h-full object-fill"
         />
       </div>
 
@@ -45,17 +72,17 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
           <div className="space-y-8 text-white">
             {/* Title without glow effect */}
             <div className="flex mx-auto w-fit items-baseline">
-              <h1 className="text-4xl md:text-6xl text-center georgia-text text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
+              <h1 className="text-4xl md:text-6xl text-center georgia-text tracking-wide">
                 {family}
               </h1>
-              <h1 className="text-4xl md:text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 tracking-wide">
+              <h1 className="text-4xl md:text-4xl text-center tracking-wide">
                 {title}
               </h1>
             </div>
             {/* Description */}
-            <p className="text-lg md:text-xl text-center italic max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+            {/* <p className="text-lg md:text-xl text-center italic max-w-2xl mx-auto leading-relaxed drop-shadow-md">
               {description}
-            </p>
+            </p> */}
 
             {/* CTA Button */}
             <div className="flex justify-center">

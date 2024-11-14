@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import StreamingPromo from "./components/HeroSection";
 import Footer from "./components/Footer";
 import cardData from "./assets/data";
+import "./App.css";
 
 const App: React.FC = () => {
   console.log({ cardData });
@@ -14,7 +15,7 @@ const App: React.FC = () => {
           title={card?.title}
           description={card?.description}
           buttonText={card?.button_text}
-          bgImage={card?.bg_image}
+          bgVideo={card?.bg_image}
           link={card?.link}
           family={card?.family}
         />

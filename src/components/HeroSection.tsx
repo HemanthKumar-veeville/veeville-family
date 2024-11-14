@@ -19,7 +19,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  console.log({ isPlaying, description });
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

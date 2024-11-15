@@ -16,7 +16,7 @@ const App: React.FC = () => {
     <div className="montserrat-font">
       <Navbar onExpandChange={handleExpandChange} />
       <div className={isNavbarExpanded ? "blurred-content" : ""}>
-        {cardData?.map((card) => (
+        {cardData?.map((card, index) => (
           <StreamingPromo
             key={card.title}
             title={card?.title}
@@ -25,6 +25,7 @@ const App: React.FC = () => {
             bgVideo={card?.bg_image}
             link={card?.link}
             family={card?.family}
+            index={index}
           />
         ))}
         <Footer />

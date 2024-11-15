@@ -7,6 +7,7 @@ interface StreamingPromoProps {
   buttonText: string;
   bgVideo: string; // Single video URL
   link: string;
+  index: number;
 }
 
 const StreamingPromo: React.FC<StreamingPromoProps> = ({
@@ -16,6 +17,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
   bgVideo,
   link,
   family,
+  index,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -51,7 +53,11 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
   }, []);
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden mb-3">
+    <div
+      className={`relative w-full h-[500px] overflow-hidden mb-3 ${
+        index === 0 ? "mt-[5.1rem]" : ""
+      }`}
+    >
       {/* Background video */}
       <div className="absolute inset-0">
         <video

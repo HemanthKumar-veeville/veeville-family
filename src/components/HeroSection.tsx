@@ -64,7 +64,7 @@ const StreamingPromo: React.FC<StreamingPromoProps> = ({
       </div>
 
       {/* Overlay for text visibility */}
-      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Content container */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center">

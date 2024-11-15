@@ -14,7 +14,11 @@ interface MenuItem {
   description?: string;
 }
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onExpandChange: (isExpanded: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onExpandChange }) => {
   const navLinks: NavLink[] = [
     { name: "Veeville", href: "#veeville" },
     { name: "Nusense", href: "#nusense" },
@@ -183,16 +187,18 @@ const Navbar: React.FC = () => {
   const handleNavHover = (index: number): void => {
     setMenuData(menu[index]);
     setIsHeightIncreased(true);
+    onExpandChange(true);
   };
 
   const handleMouseLeave = () => {
     setIsHeightIncreased(false);
-    setMenuData([]); // Clear menu data to reset the navbar height
+    setMenuData([]);
+    onExpandChange(false);
   };
 
   useEffect(() => {
     if (navRef.current) {
-      const baseHeight = 80; // base height for navbar without expanded menu
+      const baseHeight = 80;
       navRef.current.style.height =
         isHeightIncreased && menuRef.current
           ? `${baseHeight + menuRef.current.scrollHeight}px`
@@ -201,81 +207,66 @@ const Navbar: React.FC = () => {
   }, [isHeightIncreased, menuData]);
 
   return (
-    <>
-      {/* Navbar */}
-      <nav
-        ref={navRef}
-        className="fixed top-0 left-0 right-0 bg-[#121212] text-gray-300 z-50 border-b border-gray-800 shadow-lg overflow-hidden transition-all duration-500 ease-in-out"
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
-            {/* Logo or Brand Name */}
-            <img
-              className="text-xl font-semibold"
-              src={VeevilleLogo}
-              alt="Veeville Logo"
-            />
-
-            {/* Desktop Links */}
-            <ul className="hidden md:flex space-x-8">
-              {navLinks.map((link, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleNavClick(link.href)}
-                  onMouseOver={() => handleNavHover(index)}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer text-sm font-medium"
-                >
-                  {link.name}
-                </li>
-              ))}
-            </ul>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 rounded-md hover:bg-gray-800 transition-colors duration-200"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-              aria-expanded={isMobileMenuOpen}
-              type="button"
-            >
-              {isMobileMenuOpen ? (
-                <AiOutlineClose className="text-2xl" />
-              ) : (
-                <AiOutlineMenu className="text-2xl" />
-              )}
-            </button>
-          </div>
-
-          {/* Conditionally render the Menu component */}
-          {isHeightIncreased && menuData.length > 0 && (
-            <div ref={menuRef} className="mt-4 transition-all duration-300">
-              <Menu menuData={menuData} />
-            </div>
-          )}
+    <nav
+      ref={navRef}
+      className="fixed top-0 left-0 right-0 bg-[#121212] text-gray-300 z-50 border-b border-gray-800 shadow-lg overflow-hidden transition-all duration-500 ease-in-out"
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
+          <img
+            className="text-xl font-semibold"
+            src={VeevilleLogo}
+            alt="Veeville Logo"
+          />
+          <ul className="hidden md:flex space-x-8">
+            {navLinks.map((link, index) => (
+              <li
+                key={index}
+                onClick={() => handleNavClick(link.href)}
+                onMouseOver={() => handleNavHover(index)}
+                className="hover:text-white transition-colors duration-200 cursor-pointer text-sm font-medium"
+              >
+                {link.name}
+              </li>
+            ))}
+          </ul>
+          <button
+            className="md:hidden p-2 rounded-md hover:bg-gray-800 transition-colors duration-200"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            type="button"
+          >
+            {isMobileMenuOpen ? (
+              <AiOutlineClose className="text-2xl" />
+            ) : (
+              <AiOutlineMenu className="text-2xl" />
+            )}
+          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#121212] border-t border-gray-800 fixed top-14 left-0 w-full z-40">
-            <ul className="flex flex-col space-y-4 px-4 py-6">
-              {navLinks.map((link, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleNavClick(link.href)}
-                  className="hover:text-white transition-colors duration-200 cursor-pointer text-sm font-medium"
-                >
-                  {link.name}
-                </li>
-              ))}
-            </ul>
+        {isHeightIncreased && menuData.length > 0 && (
+          <div ref={menuRef} className="mt-4 transition-all duration-300">
+            <Menu menuData={menuData} />
           </div>
         )}
-      </nav>
-
-      {/* Spacer to prevent content from going under fixed navbar */}
-      <div className="h-20 md:h-16" />
-    </>
+      </div>
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[#121212] border-t border-gray-800 fixed top-14 left-0 w-full z-40">
+          <ul className="flex flex-col space-y-4 px-4 py-6">
+            {navLinks.map((link, index) => (
+              <li
+                key={index}
+                onClick={() => handleNavClick(link.href)}
+                className="hover:text-white transition-colors duration-200 cursor-pointer text-sm font-medium"
+              >
+                {link.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </nav>
   );
 };
 

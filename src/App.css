@@ -23,3 +23,8 @@
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
+
+.blurred-content {
+  filter: blur(55px);
+  transition: filter 0.3s ease;
+}

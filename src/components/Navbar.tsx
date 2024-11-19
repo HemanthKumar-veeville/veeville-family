@@ -228,6 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({ onExpandChange }) => {
     setIsHeightIncreased(false);
     setMenuData([]);
     onExpandChange(false);
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
